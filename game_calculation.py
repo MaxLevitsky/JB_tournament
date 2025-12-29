@@ -1,17 +1,9 @@
 # Python 3.11.5
 import math
 
-file = open("Results.txt", "r", encoding="utf-8")
-results = file.readlines()
-games = [[]]
-interesting_people = ["Юля","Оля"]
-for line in results:
-    if line.strip() != 'STOP':
-        games[-1].append(line.strip().split())
-    else:
-        games.append([])
-for game in games:
-    print(game)
+
+start_rate = 1500
+
 def receive(game):
     n = len(game)
     k=len(game[0]) - 1
@@ -74,7 +66,7 @@ def calc(n,k,results):
     return rezi
 def rat(x):
     if x not in rate:
-        return 1500
+        return start_rate
     return rate[x]
 
 def print_sorted_dict_by_value(input_dict):
@@ -84,22 +76,11 @@ def print_sorted_dict_by_value(input_dict):
     for key, value in sorted_items:
         print(f"{key}: {round(value)}")
 
-rate = dict()
-for game in games:
-    #print(game)
-    n,k,results=receive(game)
-    rez=calc(n,k,results)
-    print(rez)
-    rates = dict()
-    #print(rez)
-    for i in rez:
-        if i in rate:
-            rates[i] = rate[i]
-        else:
-            rates[i] = 1500
-    new_ratings = update_elo_ratings(rates, rez, 100 * k)
-   # print(new_ratings)
-    rate.update(new_ratings)
-    #print(rate)
-    #print("AAA", max(rate.values()))
-print_sorted_dict_by_value(rate)
+
+def print_report(player,report):
+    rep = report[player]
+    print(f"игрок {player}:")
+    r = start_rate
+    for res in rep:
+        print(f"поменял(-a) рейтинг с {round(r,1)} на {round(res[0],1)}, играя против {res[1]} соперников(дельта {round(res[0] - r,1)})")
+        r = res[0]
