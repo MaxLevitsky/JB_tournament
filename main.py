@@ -3,7 +3,7 @@ from game_calculation import receive, calc, start_rate, update_elo_ratings, prin
 file = open("Results.txt", "r", encoding="utf-8")
 results = file.readlines()
 games = [[]]
-interesting_people = ["Юля","Оля","Уля","Даша"]
+interesting_people = []
 for line in results:
     if line.strip() != 'STOP':
         games[-1].append(line.strip().split())
@@ -39,6 +39,7 @@ for game in games:
 print_sorted_dict_by_value(rate)
 for player in interesting_people:
     print_report(player,report)
-print("Введите игрока, на подробный результат которого хотите посмотреть:")
-pl = input()
-print_report(pl,report)
+while True:
+    print("Введите игрока, на подробный результат которого хотите посмотреть:")
+    pl = input()
+    print_report(pl,report)
