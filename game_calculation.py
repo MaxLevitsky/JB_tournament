@@ -39,8 +39,8 @@ def update_elo_ratings(player_ratings, player_scores, total_points=100, K=300):
         rating_own = player_ratings[player]
         opponents = [player_ratings[p] for p in player_ratings if p != player]
         expected = expected_score(rating_own, opponents)
+#        print(player,round(expected / (num_players/2)*total_points,1))
         actual = player_scores[player]*num_players/2 / total_points
-
         new_rating = rating_own + K * (actual - expected)
         new_ratings[player] = new_rating
 
@@ -64,10 +64,6 @@ def calc(n,k,results):
                 rezi[imya]=slov[imya]*100
 
     return rezi
-def rat(x):
-    if x not in rate:
-        return start_rate
-    return rate[x]
 
 def print_sorted_dict_by_value(input_dict):
     # Сортируем словарь по значениям
