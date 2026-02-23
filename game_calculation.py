@@ -11,7 +11,7 @@ def receive(game):
     for i in range(k):
         results[i]=[]
         for j in range(n):
-            results[i].append((game[j][0], float(game[j][i + 1])))
+            results[i].append((game[j][0], eval(game[j][i + 1])))
     return n, k, results
 
 
@@ -53,7 +53,7 @@ def calc(n,k,results):
         slov={}
         for j in range(n):
             imya,rez = results[i][j]
-            rez=float(rez)
+            print(rez)
             s+=rez
             slov[imya]=rez
         for imya in slov:
