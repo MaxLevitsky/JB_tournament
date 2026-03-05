@@ -54,6 +54,7 @@ def calc(n,k,results):
         for j in range(n):
             imya,rez = results[i][j]
             print(rez)
+            rez = eval(rez)
             s+=rez
             slov[imya]=rez
         for imya in slov:
